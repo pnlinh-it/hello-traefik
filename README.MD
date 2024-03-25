@@ -1,5 +1,20 @@
 ![](https://doc.traefik.io/traefik/assets/img/traefik-architecture.png)
 
+## Install docker & docker-compose in ubuntu 23
+```sh
+apt update
+apt install docker.io docker-compose
+systemctl enable --now docker
+systemctl status docker
+groupadd docker
+usermod -aG docker $USER
+
+https://wiki.crowncloud.net/?How_to_Install_Docker_On_Ubuntu_23_10
+https://shape.host/resources/installing-docker-on-ubuntu-23-10-step-by-step-guide
+https://shape.host/resources/installing-docker-on-ubuntu-23-10-step-by-step-guide
+
+```
+
 ## Using [Traefik](https://doc.traefik.io/traefik/) with docker
 ### [Entrypoint](https://doc.traefik.io/traefik/routing/entrypoints/) 
 They define the port which will receive the packets, and whether to listen for TCP or UDP.
@@ -118,4 +133,5 @@ services:
 - https://doc.traefik.io/traefik/reference/dynamic-configuration/docker/
 - https://doc.traefik.io/traefik/reference/dynamic-configuration/file/
 - https://doc.traefik.io/traefik/reference/static-configuration/file/
+- https://jensknipper.de/blog/traefik-http-to-https-redirect/
 
