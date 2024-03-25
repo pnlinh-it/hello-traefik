@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="39c5eb26-2e74-4f58-b59f-48c54d2cfcef" name="traefik">
+        <fileTransfer accessType="SFTP" host="traefik.pnlinh.me" port="22" sshConfigId="b3ece5e6-3b33-4cf9-b110-1cfa975eec85" sshConfig="traefik" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

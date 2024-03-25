@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig host="traefik.pnlinh.me" id="b3ece5e6-3b33-4cf9-b110-1cfa975eec85" keyPath="$USER_HOME$/.ssh/pnlinh_me" port="22" customName="traefik" nameFormat="CUSTOM" username="root" useOpenSSHConfig="true">
+        <option name="customName" value="traefik" />
+      </sshConfig>
+    </configs>
+  </component>
+</project>

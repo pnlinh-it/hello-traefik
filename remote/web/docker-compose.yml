@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  whoami:
+    image: "traefik/whoami"
+    labels:
+      - "traefik.enable=true"
+      # https://doc.traefik.io/traefik/routing/routers/#rule
+      # https://doc.traefik.io/traefik/routing/providers/docker/#routers
+      - "traefik.http.routers.whoami.rule=Host(`traefik.pnlinh.me`) && PathPrefix(`/`)"
+      - "traefik.http.routers.whoami.entrypoints=web"
+      - "traefik.http.routers.whoami.entrypoints=websecure"
+      - "traefik.http.routers.whoami.tls.certresolver=myresolver"
+      - "traefik.http.routers.whoami.tls=true"
+    networks:
+      - proxy
+
+  nginx:
+    image: nginx:alpine
+    labels:
+      - "traefik.enable=true"
+      # https://doc.traefik.io/traefik/routing/routers/#rule
+      # https://doc.traefik.io/traefik/routing/providers/docker/#routers
+      - "traefik.http.routers.nginx.rule=Host(`traefik.pnlinh.me`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.nginx.entrypoints=web"
+      - "traefik.http.routers.nginx.entrypoints=websecure"
+      - "traefik.http.routers.nginx.tls.certresolver=myresolver"
+
+      # Create middleware name nginx-stripprefix
+      - "traefik.http.middlewares.nginx-stripprefix.stripprefix.prefixes=/api"
+      - "traefik.http.routers.nginx.middlewares=nginx-stripprefix"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
+    name: proxy

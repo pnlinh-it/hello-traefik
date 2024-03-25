@@ -1,0 +1,39 @@
+# Static config
+entryPoints:
+  # Create an entrypoint name web that listen at port 80
+  # If receive a request at port 80 then redirect to port 443
+  web:
+    address: ":80"
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: "https"
+          permanent: true
+  websecure:
+    address: ":443"
+  specificIPv4:
+    address: "192.168.2.7:8888"
+    http2:
+      maxConcurrentStreams: 250
+  other:
+    address: ":9090"
+
+# Dynamic config
+http:
+  routers:
+    Router-1:
+      # Won't listen to entry point web
+      entryPoints:
+        - "websecure"
+        - "other"
+      rule: "Host(`example.com`)"
+      service: "service-1"
+      middlewares:
+        - authentication
+
+  services:
+    my-service:
+      LoadBalancer:
+        servers:
+          - url: "<local-ip>:<pont>"
